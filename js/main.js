@@ -6,19 +6,33 @@
 // L'output del prezzo finale va scritto su pagina/alert in forma umana (con massimo due decimali, per indicare centesimi sul prezzo). Questo richiederà un minimo di ricerca riguardo l'arrotondamento.
 
 let prezzoPerKm = 0.21;
-let minorenne = 20*100;
-let over65 = 40*100;  
+
 
 let kmDaPercorrere = prompt("Quanti km devi fare?");
 let anniPasseggero = prompt("Quanti anni hai?");
 
 let prezzoDelBiglietto = kmDaPercorrere * prezzoPerKm;
 
+let minorenne = anniPasseggero < 18;
+let over65 = anniPasseggero >= 65;  
+
+let sconto20 = prezzoDelBiglietto * 0.20;
+let sconto40 = prezzoDelBiglietto * 0.40;  
+
+let prezzoMinorenne =  prezzoDelBiglietto - sconto20;
+let prezzoOver65 =  prezzoDelBiglietto - sconto40;
+
+
 console.log( `Il prezzo del tuo biglietto è di €${prezzoDelBiglietto}`);
 console.log( `Anni del passeggero ${anniPasseggero}`);
+console.log(`Prezzo minorenne € ${prezzoMinorenne}`);
+console.log(`Prezzo over 65 € ${prezzoOver65}`);
 
-// if (anniPasseggero < 18) {
+if (minorenne) {
+    alert (`Prezzo del biglietto è di € ${prezzoMinorenne.toFixed(2)} applicato lo sconto per minorenni del 20% `)
+} else if (over65) {
+    alert (`Prezzo del biglietto è di € ${prezzoOver65.toFixed(2)} applicato lo sconto per gli over 65 del 40% `)
+} else {
+    alert (`Prezzo del biglietto è di € ${prezzoDelBiglietto.toFixed(2)}`)
+}
 
-//     console.log("hai lo sconto del 20% " prezzoDelBiglietto = prezzoDelBiglietto % 20 * 100);
-    
-// }
